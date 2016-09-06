@@ -9,16 +9,21 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'views'))
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function (req, res) {
+function getWeather (callback) {
   fs.readFile('./weather.json', function (err, json) {
-    weather = JSON.parse(json)
+    var weather = JSON.parse(json)
+    callback(null, weather)
+  })
+}
+
+app.get('/', function (req, res) {
+  getWeather(function (err, weather) {
     res.render('index', weather)
   })
 })
 
 app.get('/weather/:id', function (req, res) {
-  fs.readFile('./weather.json', function (err, json) {
-    weather = JSON.parse(json)
+  getWeather(function (err, weather) {
     res.render('weather', weather.weather[req.params.id])
   })
 })
