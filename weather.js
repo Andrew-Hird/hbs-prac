@@ -1,4 +1,4 @@
-module.exports = {
+{
   weather:[
     {
       id: 0,

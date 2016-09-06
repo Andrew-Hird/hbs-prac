@@ -7,8 +7,12 @@ h1 {
   font-family: fantasy;
 }
 
+ul {
+  list-style: none;
+}
+
 .image {
-  border-radius: 50%;
+  border-radius: 100%;
 }
 
 table {
